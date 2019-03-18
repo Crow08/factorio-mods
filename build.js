@@ -22,7 +22,8 @@ async function build(mod) {
   const dir = path.resolve(`build`);
   const filename = `${info.name}_${info.version}`;
   await createBuildDirectory(dir);
-  await zip(mod, dir, filename);
+  const stats = await zip(mod, dir, filename);
+  console.log(`Done: ${stats.path} [${stats.size}kb]`);
 }
 
 async function createBuildDirectory() {
@@ -31,7 +32,7 @@ async function createBuildDirectory() {
     .catch(e => {});
 }
 
-function zip(directory, destination, filename) {
+async function zip(directory, destination, filename) {
   return new Promise((resolve, reject) => {
     console.log(`Zipping...`);
     var output_path = path.resolve(destination, `${filename}.zip`);
@@ -40,13 +41,16 @@ function zip(directory, destination, filename) {
       zlib: { level: 9 }
     });
 
-    archive.directory(directory, false);
+    archive.directory(directory, `/${filename}`);
 
     output.on("close", () => {
-      console.log(
-        `Done: ${output_path} [${Math.round(archive.pointer() / 102.4) / 10}kb]`
-      );
+      resolve({
+        path: output_path,
+        size: Math.round(archive.pointer() / 102.4) / 10
+      });
     });
+
+    output.on("error", reject);
 
     archive.pipe(output);
     archive.finalize();
