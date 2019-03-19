@@ -28,6 +28,7 @@ script.on_configuration_changed(function(event)
     local changes = event.mod_changes["spawn-belt"];
     if changes then -- This Mod has changed
       game.print("spawn-belt: Updated from ".. tostring(changes.old_version) .. " to " .. tostring(changes.new_version));
+      initalize_globals();
       for k, belt in ipairs(belts) do
         if(belt["entity"]) then
           belt["item"] = spawn_item;
@@ -37,7 +38,6 @@ script.on_configuration_changed(function(event)
           table.remove(belts, k);
         end
       end
-      belts = global.belts;
     end
   end
 end)

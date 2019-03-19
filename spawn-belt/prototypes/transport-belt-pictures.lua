@@ -52,7 +52,7 @@ spawn_belt_animation_set = {
 void_belt_animation_set = {
   animation_set =
   {
-    filename = "__spawn-belt__/graphics/entity/spawn-belt/spawn-belt.png",
+    filename = "__spawn-belt__/graphics/entity/void-belt/void-belt.png",
     priority = "extra-high",
     width = 64,
     height = 64,
@@ -60,7 +60,7 @@ void_belt_animation_set = {
     direction_count = 20,
     hr_version =
     {
-      filename = "__spawn-belt__/graphics/entity/spawn-belt/hr-spawn-belt.png",
+      filename = "__spawn-belt__/graphics/entity/void-belt/hr-void-belt.png",
       priority = "extra-high",
       width = 128,
       height = 128,
