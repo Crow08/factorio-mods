@@ -1,5 +1,109 @@
 require ("transport-belt-pictures")
 
+spawn_belt_animation_set = {
+  animation_set =
+  {
+    filename = "__spawn-belt__/graphics/entity/spawn-belt/spawn-belt.png",
+    priority = "extra-high",
+    width = 64,
+    height = 64,
+    frame_count = 32,
+    direction_count = 20,
+    hr_version =
+    {
+      filename = "__spawn-belt__/graphics/entity/spawn-belt/hr-spawn-belt.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+      frame_count = 32,
+      direction_count = 20
+    }
+  },
+
+  east_index = 1,
+  west_index = 2,
+  north_index = 3,
+  south_index = 4,
+
+  east_to_north_index = 5,
+  north_to_east_index = 6,
+
+  west_to_north_index = 7,
+  north_to_west_index = 8,
+
+  south_to_east_index = 9,
+  east_to_south_index = 10,
+
+  south_to_west_index = 11,
+  west_to_south_index = 12,
+
+  starting_south_index = 13,
+  ending_south_index = 14,
+
+  starting_west_index = 15,
+  ending_west_index = 16,
+
+  starting_north_index = 17,
+  ending_north_index = 18,
+
+  starting_east_index = 19,
+  ending_east_index = 20
+}
+
+void_belt_animation_set = {
+  animation_set =
+  {
+    filename = "__spawn-belt__/graphics/entity/spawn-belt/spawn-belt.png",
+    priority = "extra-high",
+    width = 64,
+    height = 64,
+    frame_count = 32,
+    direction_count = 20,
+    hr_version =
+    {
+      filename = "__spawn-belt__/graphics/entity/spawn-belt/hr-spawn-belt.png",
+      priority = "extra-high",
+      width = 128,
+      height = 128,
+      scale = 0.5,
+      frame_count = 32,
+      direction_count = 20
+    }
+  },
+
+  east_index = 1,
+  west_index = 2,
+  north_index = 3,
+  south_index = 4,
+
+  east_to_north_index = 5,
+  north_to_east_index = 6,
+
+  west_to_north_index = 7,
+  north_to_west_index = 8,
+
+  south_to_east_index = 9,
+  east_to_south_index = 10,
+
+  south_to_west_index = 11,
+  west_to_south_index = 12,
+
+  starting_south_index = 13,
+  ending_south_index = 14,
+
+  starting_west_index = 15,
+  ending_west_index = 16,
+
+  starting_north_index = 17,
+  ending_north_index = 18,
+
+  starting_east_index = 19,
+  ending_east_index = 20
+}
+
+
+
 data:extend({
   {
     type = "transport-belt",
@@ -7,8 +111,8 @@ data:extend({
     icon = "__spawn-belt__/graphics/icons/spawn-belt.png",
     icon_size = 32,
     flags = {"placeable-neutral", "player-creation"},
-    minable = {hardness = 0.2, mining_time = 0.3, result = "spawn-belt"},
-    max_health = 500,
+    minable = {mining_time = 0.3, result = "spawn-belt"},
+    max_health = 50,
     corpse = "small-remnants",
     collision_box = {{-0.4, -0.4}, {0.4, 0.4}},
     selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
@@ -19,7 +123,7 @@ data:extend({
         filename = "__base__/sound/express-transport-belt.ogg",
         volume = 0.4
       },
-      max_sounds_per_type = 3
+      persistent = true
     },
     animation_speed_coefficient = 32,
     animations =
@@ -29,18 +133,19 @@ data:extend({
       width = 40,
       height = 40,
       frame_count = 32,
-      direction_count = 12
+      direction_count = 12,
+      hr_version =
+      {
+        filename = "__spawn-belt__/graphics/entity/spawn-belt/hr-spawn-belt.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        frame_count = 32,
+        direction_count = 12,
+        scale = 0.5
+      }
     },
-    belt_horizontal = spawn_belt_horizontal,
-    belt_vertical = spawn_belt_vertical,
-    ending_top = spawn_belt_ending_top,
-    ending_bottom = spawn_belt_ending_bottom,
-    ending_side = spawn_belt_ending_side,
-    starting_top = spawn_belt_starting_top,
-    starting_bottom = spawn_belt_starting_bottom,
-    starting_side = spawn_belt_starting_side,
-    ending_patch = ending_patch_prototype,
-    ending_patch = ending_patch_prototype,
+    belt_animation_set = spawn_belt_animation_set,
     fast_replaceable_group = "transport-belt",
     speed = 0.15375,
     connector_frame_sprites = transport_belt_connector_frame_sprites,
@@ -54,7 +159,7 @@ data:extend({
     icon = "__spawn-belt__/graphics/icons/void-belt.png",
     icon_size = 32,
     flags = {"placeable-neutral", "player-creation"},
-    minable = {hardness = 0.2, mining_time = 0.3, result = "void-belt"},
+    minable = {mining_time = 0.3, result = "void-belt"},
     max_health = 50,
     corpse = "small-remnants",
     collision_box = {{-0.4, -0.4}, {0.4, 0.4}},
@@ -66,7 +171,7 @@ data:extend({
         filename = "__base__/sound/express-transport-belt.ogg",
         volume = 0.4
       },
-      max_sounds_per_type = 3
+      persistent = true
     },
     animation_speed_coefficient = 32,
     animations =
@@ -76,18 +181,19 @@ data:extend({
       width = 40,
       height = 40,
       frame_count = 32,
-      direction_count = 12
+      direction_count = 12,
+	  hr_version =
+      {
+        filename = "__spawn-belt__/graphics/entity/void-belt/hr-void-belt.png",
+        priority = "extra-high",
+        width = 128,
+        height = 128,
+        frame_count = 32,
+        direction_count = 12,
+        scale = 0.5
+      }
     },
-    belt_horizontal = spawn_belt_horizontal,
-    belt_vertical = spawn_belt_vertical,
-    ending_top = spawn_belt_ending_top,
-    ending_bottom = spawn_belt_ending_bottom,
-    ending_side = spawn_belt_ending_side,
-    starting_top = spawn_belt_starting_top,
-    starting_bottom = spawn_belt_starting_bottom,
-    starting_side = spawn_belt_starting_side,
-    ending_patch = ending_patch_prototype,
-    ending_patch = ending_patch_prototype,
+    belt_animation_set = void_belt_animation_set,
     fast_replaceable_group = "transport-belt",
     speed = 0.15375,
     connector_frame_sprites = transport_belt_connector_frame_sprites,
